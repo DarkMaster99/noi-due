@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; manifest-src 'self'; worker-src 'self'; connect-src 'self'; frame-src https://script.google.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="theme-color" content="#fbf3ef">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Noi due">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Noi due</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<main id="setup" hidden>
+  <img src="icon-192.png" alt="" width="96" height="96">
+  <h1>Noi due</h1>
+  <p>Incolla il link della vostra app. Resta salvato solo su questo telefono.</p>
+  <label for="link">Link dell'app</label>
+  <input id="link" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec">
+  <p id="err" class="err" hidden>Non è il link giusto: deve iniziare con https://script.google.com/ e finire con /exec.</p>
+  <button id="save" type="button">Apri l'app</button>
+  <p class="small">Il link lo trovi nell'app, in Impostazioni → «Installa sul telefono».</p>
+</main>
+<main id="direct" hidden>
+  <img src="icon-192.png" alt="" width="96" height="96">
+  <h1>Noi due</h1>
+  <button id="go" type="button">Apri l'app</button>
+  <p class="small"><button id="inside" type="button" class="link">Prova ad aprirla qui dentro</button> · <a id="change" href="?cambia">Cambia link</a></p>
+</main>
+<iframe id="app" title="Noi due" hidden allow="clipboard-write; web-share"></iframe>
+<div id="help" role="status" hidden>
+  <span>Non si apre qui?</span>
+  <button id="out" type="button">Apri direttamente</button>
+  <button id="retry" type="button" class="link">Riprova</button>
+</div>
+<noscript><p class="small">Serve JavaScript.</p></noscript>
+</body>
+</html>
