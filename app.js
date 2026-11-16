@@ -13,6 +13,7 @@
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
 
   var qs = new URLSearchParams(location.search);
+  var vai = /^(spesa|lista|film)$/.test(qs.get('vai') || '') ? '?vai=' + qs.get('vai') : '';
   if (qs.has('cambia')) { set('link', ''); set('modo', ''); history.replaceState(null, '', location.pathname); }
 
   function setup() {
@@ -30,16 +31,16 @@
 
   function direct(link, auto) {
     $('app').hidden = true; $('help').hidden = true; $('direct').hidden = false;
-    $('go').onclick = function () { location.href = link; };
+    $('go').onclick = function () { location.href = link + vai; };
     $('inside').onclick = function () { set('modo', 'dentro'); $('direct').hidden = true; inside(link); };
-    if (auto && !sessionStorage.getItem('nd.aperta')) { sessionStorage.setItem('nd.aperta', '1'); location.href = link; }
+    if (auto && !sessionStorage.getItem('nd.aperta')) { sessionStorage.setItem('nd.aperta', '1'); location.href = link + vai; }
   }
 
   function inside(link) {
     var fr = $('app');
     ok = false; $('help').hidden = true;
     fr.hidden = false;
-    fr.src = link;
+    fr.src = link + vai;
     clearTimeout(timer);
     timer = setTimeout(function () { if (!ok) $('help').hidden = false; }, 15000);
   }
